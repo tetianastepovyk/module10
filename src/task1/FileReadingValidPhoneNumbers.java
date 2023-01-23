@@ -23,7 +23,7 @@ public class FileReadingValidPhoneNumbers {
 
     }
     private boolean isValidPhoneNumber(String phoneNumber){
-        Pattern p = Pattern.compile("\\d{3}-\\d{3}-\\d{4}|\\(\\d{3}\\) \\d{3}-\\d{4}");
+        Pattern p = Pattern.compile("^(\\d{3}-\\d{3}-\\d{4})$|^(\\(\\d{3}\\) \\d{3}-\\d{4})$");
         Matcher m = p.matcher(phoneNumber);
         return m.find();
     }
