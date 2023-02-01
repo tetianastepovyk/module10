@@ -7,26 +7,24 @@ import java.util.*;
 
 
 public class FrequencyOfWordInFile {
-    public void printFrequencyOfWordInFileToConsole(){
-        Map<String,Integer> mapWords = new HashMap<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("./src/words.txt"))) {
-            while(reader.ready()){
+    public void printFrequencyOfWordInFileToConsole(String fileName) {
+        Map<String, Integer> mapWords = new HashMap<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            while (reader.ready()) {
                 String words = reader.readLine().strip();
                 String[] lineWords = words.split("\\s+");
 
-                for(String lineWord:lineWords){
-                    if(mapWords.containsKey(lineWord)){
-                        int count =mapWords.get(lineWord);
-                        mapWords.put(lineWord,count+1);
-                    }
-                    else {
-                        mapWords.put(lineWord,1);
+                for (String lineWord : lineWords) {
+                    if (mapWords.containsKey(lineWord)) {
+                        int count = mapWords.get(lineWord);
+                        mapWords.put(lineWord, count + 1);
+                    } else {
+                        mapWords.put(lineWord, 1);
                     }
                 }
-               // System.out.println(words);
+                // System.out.println(words);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -34,4 +32,5 @@ public class FrequencyOfWordInFile {
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
                 .forEach(System.out::println);
     }
+
 }
